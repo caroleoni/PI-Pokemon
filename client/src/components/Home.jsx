@@ -11,8 +11,8 @@ export default function Home() {
     const types = useSelector((state) => state.types)
    
     // const [currentPage, setCurrentPage] = useState(1);
-    // //cuantos pokemons tengo por pagina
-    // const [pokemonPerPage, setPokemonsPerPage] = useState()
+    // //pokemons que tengo por pagina
+    // const [pokemonPerPage, setPokemonsPerPage] = useState(12)
 
 
 
@@ -77,8 +77,8 @@ function handleClick(e) {
             </nav>
 
             <div className='cards'>
-                {
-                    allPokemons ? allPokemons.map((p) => {
+                 {
+                    allPokemons && allPokemons.map((p) => {
                         return (
                             <Card 
                                 image={p.imagen}
@@ -88,14 +88,10 @@ function handleClick(e) {
                                 key={p.key}                            
                             />
                         );
-                    }) : <h1>No hya pokemons</h1>
+                    }) 
                     
-                }
-                 {/* : <div>
-                            <img src={loading} alt='Loading...' />
-                            <br />
-                            <h1>Loading...</h1>
-                        </div> */}
+                } 
+                
             </div>
        </div>
        
