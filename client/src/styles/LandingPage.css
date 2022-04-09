@@ -1,0 +1,87 @@
+.container-LandingPage{
+    /* background: url("../image/sun-moon-team-up-LandingPage.jpg") no-repeat center center;
+
+    /* min-height: 100%; 
+    width: 100%;  */
+    /* height: 658px;
+    background-size: cover;
+    position: relative; */ 
+    background-image: url('../image/sun-moon-team-up-LandingPage.jpg');
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.landingPage {
+  position: absolute;
+  /* background-color: rgb(0 0 0 / 70%); */
+  width: 100%;
+  height: 100%;
+}
+
+.btn-landingPage {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #e74c3c;
+    border-radius: 0.6em;
+    color: #e74c3c;
+    font-size: 1rem;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    font-weight: 700;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+.btn-landingPage:hover, .btn-landingPage:focus {
+    color: #fff;
+    outline: 0;
+}
+.btn-landingPage:hover {
+    box-shadow: 0 0 40px 40px #e74c3c inset;
+}
+
+.landingPage h1 {
+    /* margin: 0px auto;
+    font-family: "Nunito";
+    font-weight: bold;
+    color: black;
+    margin-bottom: 11rem;
+    text-align: center; */
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-left: 12rem;
+    font-size: 4rem;
+    font-style: Bold 700 italic;
+    color: rgb(228, 13, 13);
+}
+
+@media only screen and (max-width: 600px) {
+    .container-LandingPage{
+        background-image: url('../image/sun-moon-team-up-LandingPage.jpg');
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+    }
+    .btn-landingPage {
+        bottom: 25%;
+        left: 20%;
+        position: absolute;
+        top: auto;
+    }
+  }
+
+.footer {
+    text-align: center;
+    color: black;
+    bottom: 0;
+    margin-bottom: 15px;
+    width: 100%;
+    position: fixed;
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -31,10 +31,10 @@ module.exports = (sequelize) => {
     speed: {
       type: DataTypes.INTEGER
     },
-    heigth: { //altura
+    height: { //altura
       type: DataTypes.INTEGER
     },
-    weigth: {//peso
+    weight: {//peso
       type: DataTypes.INTEGER
     },
     createdInDb: {

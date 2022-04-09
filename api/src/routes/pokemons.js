@@ -20,9 +20,10 @@ const getApiPokemon = async() => {
                 attack: pokemon.data.stats[1].base_stat,
                 defense: pokemon.data.stats[2].base_stat,
                 speed: pokemon.data.stats[5].base_stat,
-                heigth: pokemon.data.heigth,
-                weigth: pokemon.data.weigth,
-                types: pokemon.data.types && pokemon.data.types.map(e => e.type.name)
+                height: pokemon.data.height,
+                weight: pokemon.data.weight,
+                types: pokemon.data.types.map(e => e.type.name).join(", ")
+                // types: pokemon.data.types && pokemon.data.types.map(e => e.type.name)
             }
         })
     )

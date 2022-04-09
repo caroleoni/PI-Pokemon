@@ -6,12 +6,12 @@ const { Type } = require('../db');
 router.get('/', async (req, res) => {
     try {
         const apiTypes = await axios.get('https://pokeapi.co/api/v2/type');
-        const arrayTypes = apiTypes.data.results.map(t => t.name);
+        const arrayTypes = await apiTypes.data.results;
         // console.log(arrayTypes);
         arrayTypes.forEach(t => {
             Type.findOrCreate({
                 where: {
-                    name: t
+                    name: t.name
                 }
             })
         })
