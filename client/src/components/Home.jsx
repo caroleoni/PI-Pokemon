@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import '../styles/Home.css';
+
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -43,8 +45,8 @@ function handleClick(e) {
 function handleFilterByTypes(e) {
     e.preventDefault();
     dispatch(filterByTypes(e.target.value))
-    setCurrentPage(1);
-    setOrder(`Ordenado ${e.target.value}`);
+    // setCurrentPage(1);
+    // setOrder(`Ordenado ${e.target.value}`);
 }
 function handleFilterCreated(e) {
     dispatch(filterCreated(e.target.value))
@@ -66,19 +68,17 @@ function handleOrderAttack(e) {
        <div className='container'>
            <nav>
                 <div className='navbar_container'>
-                    <div className='titulo_pagPrincipal'>
-                        <h1>Pokemon App</h1>
-                    </div>
+                    <div className='titulo_pagPrincipal'></div>
                     <SearchBar/>
                     <div>
                         <label className="navbar_label">Order by:</label>
-                        <select onChange={(e) => handleOrderByName(e) } defaultValue='Order'>
+                        <select className='select-navBar' onChange={(e) => handleOrderByName(e) } defaultValue='Order'>
                             <option className='navbar_option' disabled>Order</option>
                             <option className='navbar_option' value='A-Z'>A to Z</option>
                             <option className='navbar_option' value='Z-A'>Z to A</option>
                         </select>
 
-                        <select onChange={(e) => handleOrderAttack(e)} defaultValue='Strong'>
+                        <select className='select-navBar' onChange={(e) => handleOrderAttack(e)} defaultValue='Strong'>
                             <option className='navbar_option' disabled>Strong</option>
                             <option className='navbar_option' value='lower'>Lower Attack</option>
                             <option className='navbar_option'value='higher'>Higher Attack</option>
@@ -86,12 +86,12 @@ function handleOrderAttack(e) {
                     </div>
                     <div>
                         <label className="navbar_label">Filter by:</label>
-                        <select onChange={(e) => handleFilterCreated(e)}>
+                        <select className='select-navBar' onChange={(e) => handleFilterCreated(e)}>
                             <option className='navbar_option' value='all'>Created by:</option>
                             <option className='navbar_option' value='api'>Api</option>
                             <option className='navbar_option' value='create'>Created</option>
                         </select>
-                        <select onChange={(e) => handleFilterByTypes(e)} defaultValue='Types'>
+                        <select className='select-navBar' onChange={(e) => handleFilterByTypes(e)} defaultValue='Types'>
                             <option className='navbar_option' disabled>Types:</option>
                             <option className='navbar_option' value='allTypes'>All Types</option>
                             {
@@ -102,11 +102,11 @@ function handleOrderAttack(e) {
                         </select>
                     </div>
                     <div className='link_createForm'>
-                        <Link to='/pokemons'><button>Create your own pokemon</button></Link>
+                        <Link to='/pokemons'><button className='btn-Create'>Create your own pokemon</button></Link>
                     </div>
-                    <div className='btn_reset'>
-                        <button onClick={(e) => handleClick(e)}>Home</button>
-                    </div>
+                    
+                        <button className='btn_reset' onClick={(e) => handleClick(e)}>Home</button>
+                    
                 </div>
             </nav>
             <div className='paginado'>
@@ -130,8 +130,7 @@ function handleOrderAttack(e) {
                                 key={p.id}                            
                             />
                         )
-                    }) : <p>Loading...</p>
-                    
+                    }) : <div className='loading'><h2>Loading...</h2></div>
                 } 
                 
             </div>

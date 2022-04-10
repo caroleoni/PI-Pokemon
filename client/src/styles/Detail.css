@@ -1,9 +1,30 @@
+.btn_Detail {
+	font-family: 'Rubik', sans-serif;
+	background-color: #23394d;
+	border-radius: 10px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 1.2em;
+	width: 6vw;
+	height: 6vh;
+	margin-left: 1rem;
+}
+
+.btn_Detail:hover {
+	color: #fff;
+    background-color: #e73b24;
+    
+}
+
+
 .loading {
     position:absolute;
-    height: 100%;
-    width: 100%;
+    height: 90%;
+    width: 90%;
     background-image: url('../image/pikachu-shy.gif');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    /* margin: auto;
+    margin-top: 50px; */
 }

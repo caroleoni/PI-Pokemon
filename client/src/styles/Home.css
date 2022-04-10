@@ -1,0 +1,92 @@
+.titulo_pagPrincipal{ 
+    background-size: 100% 100%;
+    background-image: url('../image/pokemon-Name.png');
+    position: absolute;
+    height: 100px;
+    background-repeat: no-repeat;
+    width: 270px;
+}
+.btn-Create {
+	font-family: 'Rubik', sans-serif;
+	background-color: #23394d;
+	border-radius: 10px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 1.2em;
+	width: 20vw;
+	height: 7vh;
+	margin-left: 1rem;
+    margin-top: 10px;
+  
+}
+
+.btn-Create:hover {
+	color: #fff;
+    background-color: #e73b24;
+    
+}
+.btn_reset {
+	font-family: 'Rubik', sans-serif;
+	background-color: #23394d;
+	border-radius: 10px;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 1em;
+	width: 6vw;
+	height: 6vh;
+    margin-left: 1rem;
+}
+
+.btn_reset:hover {
+	color: #fff;
+    background-color: #e73b24;
+    
+}
+/* #nav{ 
+    background-color: #035aad;
+}
+.navbar_container {
+    display: flex;
+    width: 70%;
+    text-align: center;
+    margin: 0px 0px 0px auto;
+} */
+.navbar_container{
+    background-color: #23394d;
+    color: white;
+    text-decoration: none;
+    border-color: #23394d;
+    padding: 3px;
+    cursor: pointer;
+    font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.navbar_container:hover {
+    color: #fff;
+    background-color: #e73b24;
+    
+}
+#container{ 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 1rem; 
+    margin-left: 3.5rem; 
+    margin-top: 1.9rem;
+    
+}
+
+
+
+.loading {
+    position:absolute;
+    height: 90%;
+    width: 90%;
+    background-image: url('../image/pikachu-shy.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* margin: auto;
+    margin-top: 50px; */
+}

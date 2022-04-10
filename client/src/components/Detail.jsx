@@ -42,12 +42,11 @@ return (
                 <h3>WEIGHT: {myPokemon[0].weight} </h3>
                 {/* <h3>TYPES: {myPokemon[0].types.map((t => t + ' '))}</h3> */}
                 <h3>TYPES:</h3>
-                {/* Pregunto si el tipo es un array de los creados? si lo es lo mapeo el array de objetos, sino
+                {/* Pregunto si el tipo es un array de los creados? si lo es  mapeo el array de objetos, sino
                 me llega como string desde la api */}
                 {
                     Array.isArray(myPokemon[0].types) ?
                     myPokemon[0].types.map((t,i)=>{
-
                     return <div key={i}>
                       <h3 key={i}> {t.name}</h3>
                         </div>
@@ -62,11 +61,11 @@ return (
 
                 <div className='btn-detail'>
                     <Link to='/home'>
-                        <button>Home</button>
+                        <button className='btn_Detail'>Home</button>
                     </Link>
                 </div>
             </div>
-            : <div className='loading'><p>Loading</p></div>
+            : <div className='loading'><h2>Loading....</h2></div>
         }
     </div>
 )

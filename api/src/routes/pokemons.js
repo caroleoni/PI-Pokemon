@@ -22,7 +22,7 @@ const getApiPokemon = async() => {
                 speed: pokemon.data.stats[5].base_stat,
                 height: pokemon.data.height,
                 weight: pokemon.data.weight,
-                types: pokemon.data.types.map(e => e.type.name).join(", ")
+                types: pokemon.data.types && pokemon.data.types.map(e => e.type.name).join(", ")
                 // types: pokemon.data.types && pokemon.data.types.map(e => e.type.name)
             }
         })
@@ -85,10 +85,14 @@ router.post('/', async (req, res) => {
         let newPokemon = await Pokemon.create({
             id, name, image, hp, attack, defense, speed, height, weight, createdInDb
         })
-        let typesDb = await Type.findAll({
-            where: { name: types }
-        })
-        newPokemon.addType(typesDb);
+        for(let i = 0; i < types.length; i ++) {
+            let typesDb = await Type.findAll({
+                where: { name: types[0] }
+            })
+            await newPokemon.addType(typesDb);
+        }
+        
+        
         res.json('Pokemon Created');
 
     } catch (error) {

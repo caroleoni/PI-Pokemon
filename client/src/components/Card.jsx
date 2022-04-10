@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Card.css';
 
 //Card renderiza lo que necesito
 
@@ -14,7 +15,7 @@ export default function Card({image, name, types, id}) {
 
     return (
         <div className='card-container'>
-            <img src={image} alt='image' width='170px' height='180px'/>
+            <img className='image' src={image} alt='image' width='170px' height='180px'/>
             <div className='card-detail'>
                 <h5 className='name-title'>Name</h5>
                 <h3>{name}</h3>

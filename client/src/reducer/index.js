@@ -34,25 +34,25 @@ function rootReducer(state = initialState, action) {
                 types: action.payload
             };
         case FILTER_TYPES:
-            // let allTypes = state.pokemonsAux;
-            // let typesFilter = action.payload === 'all' ? allTypes : allTypes.filter(e => e.types.includes(action.payload));
-            // console.log(typesFilter)
-            // return {
-            //     ...state,
-            //     pokemons: typesFilter.length ? typesFilter : [`${action.payload} Pokemons`]
-            // };
-            const allTypes = state.pokemonsAux;
-            const typesFilter = action.payload === 'allTypes' ? allTypes : allTypes.filter(pokemon => {
-                for(let types of pokemon.types){
-                    if(action.payload === types){
-                        return pokemon
-                    } 
-                }
-            });
+            let allTypes = state.pokemonsAux;
+            let typesFilter = action.payload === 'allTypes' ? allTypes : allTypes.filter(e => e.types.includes(action.payload));
+            console.log(typesFilter)
             return {
                 ...state,
-                pokemons: typesFilter
+                pokemons: typesFilter.length ? typesFilter : [`${action.payload} Pokemons`]
             };
+            // const allTypes = state.pokemonsAux;
+            // const typesFilter = action.payload === 'allTypes' ? allTypes : allTypes.filter(pokemon => {
+            //     for(let types of pokemon.types){
+            //         if(action.payload === types){
+            //             return pokemon
+            //         } 
+            //     }
+            // });
+            // return {
+            //     ...state,
+            //     pokemons: typesFilter
+            // };
             // let allTypes = state.pokemonsAux;
             // let typesFilter = [];
             // if(action.payload === 'allTypes') {

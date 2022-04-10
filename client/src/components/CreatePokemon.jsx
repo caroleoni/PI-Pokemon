@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { postPokemon, getTypes } from '../actions';
+import '../styles/CreatePokemon.css';
 
 export default function CreatePokemon() {
     const dispatch = useDispatch();
@@ -153,176 +154,68 @@ function handleSubmit(e) {
     }
 };
 
-// function Validate(input) {
-//     let errors = {};
-//     console.log(errors, 'validar')
-
-//     if(!input.name) {
-//         errors.name ='Name is required';
-//       } else if(typeof input.name !== 'string' || input.name.length < 2) {
-//         errors.name = 'The name is invalid';
-//       } else if(pokemons.find((p) => p.name.toLowerCase() === input.name.toLowerCase())) {
-//         errors.name = `Pokemon name ${input.name} already exists`;
-  
-//       } else if(!input.hp) {
-//         errors.hp = 'HP is required';
-//       } else if(input.hp <= 0 || input.hp > 150) {
-//         errors.hp = 'HP cannot be less than or equal to 0 and cannot be greater than 150 points';
-  
-//       } else if(!input.attack) {
-//         errors.attack ='Attack is required';
-//       } else if(input.attack <= 0 || input.attack > 150) {
-//         errors.attack ='Attack cannot be less than or equal to 0 and cannot be greater than 150 points';
-  
-//       } else if(!input.defense) {
-//         errors.defense ='Defense is required';
-//       } else if(input.defense <= 0 || input.defense > 150) {
-//         errors.defense ='Defense cannot be less than or equal to 0 and cannot be greater than 150 points';
-  
-//       } else if(!input.speed) {
-//         errors.speed ='Speed is required';
-//       } else if(input.speed <= 0 || input.speed > 150) {
-//         errors.speed ='Speed cannot be less than or equal to 0 and cannot be greater than 150 points';
-  
-//       } else if(!input.height) {
-//         errors.height ='Height is required';
-//       } else if(input.height <= 0 || input.height > 150) {
-//         errors.height ='Height cannot be less than or equal to 0 and cannot be greater than 150 points';
-  
-//       } else if(!input.weight) {
-//         errors.weight ='Weight is required';
-//       } else if(input.weight <= 0 || input.weight >150) {
-//         errors.weight ='Weight cannot be less than or equal to 0 and cannot be greater than 150 points';
-
-//       } else if(!input.image) {
-//         errors.image = 'Image is required';
-//       }
-//       return errors;
-// };
-
-
-// function handleSubmit(e) {
-//     e.preventDefault();
-//     let errors = {};
-//     console.log(errors, 'validar')
-
-//     if(!input.name) {
-//         return alert('Name is required')
-//       } else if(typeof input.name !== 'string' || input.name.length < 1) {
-//         return alert( 'The name is invalid')
-//       } else if(pokemons.find((p) => p.name.toLowerCase() === input.name.toLowerCase())) {
-//         return alert( `Pokemon name ${input.name} already exists`)
-  
-//       } else if(!input.hp) {
-//         return alert( 'HP is required')
-//       } else if(input.hp <= 0 || input.hp > 150) {
-//         return alert( 'HP cannot be less than or equal to 0 and cannot be greater than 150 points')
-  
-//       } else if(!input.attack) {
-//         return alert('Attack is required')
-//       } else if(input.attack <= 0 || input.attack > 150) {
-//         return alert('Attack cannot be less than or equal to 0 and cannot be greater than 150 points')
-  
-//       } else if(!input.defense) {
-//         return alert('Defense is required')
-//       } else if(input.defense <= 0 || input.defense > 150) {
-//         return alert('Defense cannot be less than or equal to 0 and cannot be greater than 150 points')
-  
-//       } else if(!input.speed) {
-//         return alert('Speed is required')
-//       } else if(input.speed <= 0 || input.speed > 150) {
-//         return alert('Speed cannot be less than or equal to 0 and cannot be greater than 150 points')
-  
-//       } else if(!input.height) {
-//         return alert('Height is required')
-//       } else if(input.height <= 0 || input.height > 150) {
-//         return alert('Height cannot be less than or equal to 0 and cannot be greater than 150 points')
-  
-//       } else if(!input.weight) {
-//         return alert('Weight is required')
-//       } else if(input.weight <= 0 || input.weight >150) {
-//         return alert('Weight cannot be less than or equal to 0 and cannot be greater than 150 points')
-//       }
-
-//     dispatch(postPokemon(input))    
-//     alert('¡Pokemon Created!')
-//     navigate('/home');
-//     setInput({
-//         name: '',
-//         hp: '',
-//         attack: '',
-//         defense: '',
-//         speed: '',
-//         height: '',
-//         weight: '',
-//         image: '',
-//         types: []   
-//     })
-    
-// };
-
 return (
     <div className='container-Created'>
         <Link to='/home'>
             <button className='btn-home'>Home</button>
         </Link>
         <h1>Create your Pokemon</h1>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className='form' onSubmit={(e) => handleSubmit(e)}>
             <div className='container-form'>
                 <div>
                     <label>Name:</label>
-                    <input type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.name ? null : (<span>{errors.name}</span>)
+                        !errors.name ? null : (<span className='error'>{errors.name}</span>)
                     }
                 </div>
                 <div>
                     <label>HP:</label>
-                    <input type='number' value={input.hp} name='hp' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='number' value={input.hp} name='hp' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.hp ? null : (<span>{errors.hp}</span>)
+                        !errors.hp ? null : (<span className='error'>{errors.hp}</span>)
                     }
                 </div>
                 <div>
                     <label>Attack:</label>
-                    <input type='number' value={input.attack} name='attack' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='number' value={input.attack} name='attack' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.attack ? null : (<span>{errors.attack}</span>)
+                        !errors.attack ? null : (<span className='error'>{errors.attack}</span>)
                     }
                 </div>
                 <div>
                     <label>Defense:</label>
-                    <input type='number' value={input.defense} name='defense' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='number' value={input.defense} name='defense' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.defense ? null : (<span>{errors.defense}</span>)
+                        !errors.defense ? null : (<span className='error'>{errors.defense}</span>)
                     }
                 </div>
                 <div>
                     <label>Speed:</label>
-                    <input type='number' value={input.speed} name='speed' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='number' value={input.speed} name='speed' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.speed ? null : (<span>{errors.speed}</span>)
+                        !errors.speed ? null : (<span className='error'>{errors.speed}</span>)
                     }
                 </div>
                 <div>
                     <label>Height:</label>
-                    <input type='number' value={input.height} name='height' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='number' value={input.height} name='height' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.height ? null : (<span>{errors.height}</span>)
+                        !errors.height ? null : (<span className='error'>{errors.height}</span>)
                     }
                 </div>
                 <div>
                     <label>Weight:</label>
-                    <input type='number' value={input.weight} name='weight' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='number' value={input.weight} name='weight' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.weight ? null : (<span>{errors.weight}</span>)
+                        !errors.weight ? null : (<span className='error'>{errors.weight}</span>)
                     }
                 </div>
                 <div>
                     <label>Image:</label>
-                    <input type='text' value={input.image} name='image' onChange={(e) => handleChange(e)} />
+                    <input className='input' type='text' value={input.image} name='image' onChange={(e) => handleChange(e)} />
                     {
-                        !errors.image ? null : (<span>{errors.image}</span>)
+                        !errors.image ? null : (<span className='error'>{errors.image}</span>)
                     }
                 </div>
                 <div className='input-type'>
@@ -337,16 +230,16 @@ return (
                     {
                         input.types.map((t, i) => {
                             return(
-                            <div key={i}>
-                                <p>- {t}</p>
-                                <button value={t} onClick={() => handleDelete(t)}>X</button>
+                            <div className='list_types' key={i}>
+                                <p className='type'>- {t}</p>
+                                <button className='btn-delete' value={t} onClick={() => handleDelete(t)}>X</button>
                             </div>
                             )
                         })
                     }
                 </div>
             </div>
-            <button type='submit'>Create Pokemon</button>
+            <button className='btn_form' type='submit'>Create Pokemon</button>
         </form>
     </div>
 )
