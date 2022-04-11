@@ -114,4 +114,13 @@ export function reset() {
         type: 'RESET'
     }
 };
+export function orderBack(order) {
+    return async function(dispatch) {
+      const json= await axios.get('http://localhost:3001/pokemons/ordenamiento' + order)
+        return dispatch({
+            type: 'ORDER_BACK',
+            payload: json.data
+        })
+    }
+}
 

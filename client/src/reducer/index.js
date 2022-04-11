@@ -133,6 +133,12 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 details: []
             };    
+        case 'ORDER_BACK':
+            console.log(action.payload)
+            return {
+                ...state,
+                pokemons: action.payload
+            }    
     
         default:
            return state;

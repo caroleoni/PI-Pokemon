@@ -113,5 +113,29 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+router.get('/ordenamiento/:order', async (req, res) => {
+    const {order}  = req.params;
+    const allPokemons = await getAllPokemons();
+    const orderName = order === 'A-Z' ?
+    allPokemons.sort(function(a, b)  {
+        if(a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+        }
+        if(b.name.toLowerCase() > a.name.toLowerCase()) {
+            return -1;
+        }
+        return 0;
+    }) : 
+    allPokemons.sort(function(a, b) {
+        if(a.name.toLowerCase() > b.name.toLowerCase()) {
+            return -1;
+        }
+        if(b.name.toLowerCase() > a.name.toLowerCase()) {
+            return 1;
+        }
+        return 0;
+    })
+    res.status(200).json(orderName)
+} )
 
 module.exports = router;
