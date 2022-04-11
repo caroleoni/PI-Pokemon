@@ -45,8 +45,8 @@ function handleClick(e) {
 function handleFilterByTypes(e) {
     e.preventDefault();
     dispatch(filterByTypes(e.target.value))
-    // setCurrentPage(1);
-    // setOrder(`Ordenado ${e.target.value}`);
+    setCurrentPage(1);
+    setOrder(`Ordenado ${e.target.value}`);
 }
 function handleFilterCreated(e) {
     dispatch(filterCreated(e.target.value))
@@ -91,13 +91,19 @@ function handleOrderAttack(e) {
                             <option className='navbar_option' value='api'>Api</option>
                             <option className='navbar_option' value='create'>Created</option>
                         </select>
-                        <select className='select-navBar' onChange={(e) => handleFilterByTypes(e)} defaultValue='Types'>
+                        <select className='select-navBar' onChange={(e) => handleFilterByTypes(e)} >
                             <option className='navbar_option' disabled>Types:</option>
                             <option className='navbar_option' value='allTypes'>All Types</option>
                             {
-                                types && types.map((t) => (
-                                    <option className='navbar_option' value={t.name} key={t.id}>{t.name}</option>
-                                ))
+                                types?.sort(function (a, b) {
+                                    if (a.name < b.name) return -1;
+                                    if (a.name > b.name) return 1;
+                                    return 0;
+                                }).map(e => {
+                                    return (
+                                        <option key={e.id} value={e.name}>{e.name}</option>
+                                    )
+                                })
                             }
                         </select>
                     </div>

@@ -102,9 +102,10 @@ export function orderAttack(payload) {
 };
 export function deletePokemon(id) {
     return async function(dispatch) {
-        await axios.delete('/pokemons/' + id)
+       await axios.delete('http://localhost:3001/pokemons/' + id)
         return dispatch({
-            type: 'DELETE_POKEMON'
+            type: 'DELETE_POKEMON',
+        
         })
     }
 };
@@ -112,7 +113,5 @@ export function reset() {
     return {
         type: 'RESET'
     }
-}
-
-
+};
 

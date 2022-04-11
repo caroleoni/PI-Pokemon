@@ -125,12 +125,13 @@ function rootReducer(state = initialState, action) {
             };
         case DELETE_POKEMON:
             return {
-                ...state
+                ...state,
+                // pokemons: state.pokemons.filter(e => e.id !== id)
             };
         case RESET: 
             return {
                 ...state,
-                params: []
+                details: []
             };    
     
         default:

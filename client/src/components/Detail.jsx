@@ -9,20 +9,21 @@ import '../styles/Detail.css';
 export default function Detail() {
     const dispatch = useDispatch();
     const {id} = useParams();
-    // const navigate = useNavigate();
-
-useEffect(() => {
-    dispatch(getDetails(id))
-  }, [dispatch, id])
+    const navigate = useNavigate();
 
 useEffect(() => {
     dispatch(reset())
 }, [dispatch]);
 
-// function handleDelete() {
-//     dispatch(deletePokemon(id));
-//     navigate('/home')
-// };
+useEffect(() => {
+    dispatch(getDetails(id))
+  }, [dispatch, id])
+
+
+function handleDelete() {
+    dispatch(deletePokemon(id));
+    navigate('/home')
+};
 
 const myPokemon = useSelector((state) => state.details);
 
@@ -48,16 +49,16 @@ return (
                     Array.isArray(myPokemon[0].types) ?
                     myPokemon[0].types.map((t,i)=>{
                     return <div key={i}>
-                      <h3 key={i}> {t.name}</h3>
-                        </div>
+                                <h3 key={i}> {t.name}</h3>
+                           </div>
                   }): <h3>{ myPokemon[0].types}</h3>
                   
                 }
-                {/* {
+                {
                     typeof myPokemon[0].id === 'string' && (
-                        <button onClick={(e) => handleDelete(e)}>Delete Pokemon</button>
+                        <button className='delete' onClick={handleDelete}>Delete Pokemon</button>
                     )
-                } */}
+                }
 
                 <div className='btn-detail'>
                     <Link to='/home'>
@@ -70,3 +71,4 @@ return (
     </div>
 )
 };
+

@@ -16,7 +16,23 @@
     
 }
 
-
+.delete{
+    padding: 10px;
+    background:rgb(204, 87, 71);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: 0.8s;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+}
+.delete:hover{
+    background: rgb(230, 69, 48);
+    cursor: pointer;
+    box-shadow: 0 0 5px #E56256, 0 0 20px #E56256, 0 0 60px #E56256;
+}
 .loading {
     position:absolute;
     height: 90%;

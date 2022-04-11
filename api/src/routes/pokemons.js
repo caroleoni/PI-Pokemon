@@ -40,6 +40,7 @@ const getDbPokemon = async() => {
             }
         }
     })
+    
     return pokemonDb;
 };
 

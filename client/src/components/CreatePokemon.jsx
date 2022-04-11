@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPokemon, getTypes } from '../actions';
+import { postPokemon, getTypes, getPokemons } from '../actions';
 import '../styles/CreatePokemon.css';
 
 export default function CreatePokemon() {
@@ -10,6 +10,11 @@ export default function CreatePokemon() {
     const pokemons = useSelector((state) => state.pokemons);
     const navigate = useNavigate(); //me redirige a la ruta que quiero, que le indico
     const[errors, setErrors] = useState({required: true});
+
+    useEffect(() => {
+        !types.length && dispatch(getTypes())
+        !pokemons.length && dispatch(getPokemons())
+  }, [dispatch])
 
     const [input, setInput] = useState({ //en el setInput es donde guardo todo
         name: '',
@@ -20,12 +25,10 @@ export default function CreatePokemon() {
         height: '',
         weight: '',
         image: '',
-        types: []      
+        types: []  
     });
 
-    useEffect(() => {
-        dispatch(getTypes())
-    }, [dispatch]);
+    
 
 function Validate(input) {
     let errors = {required: false};
@@ -86,33 +89,44 @@ function Validate(input) {
     } else if(!input.image.includes("https://")) {
         errors.image = 'Image is required';
         errors.required = true;
-    }
+    } else if (input.types.length === 0) errors.types = "You must select the pokemon types"
+        else if (input.types.length > 2) errors.types = "Max 2 types"
+
         return errors;
 };
 
 function handleChange(e) {
        setInput ({
             ...input,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
         console.log(input);
        setErrors(Validate({
             ...input,
-            [e.target.name] : e.target.value
-        }))
+            [e.target.name]: e.target.value
+        }, pokemons))
 };
+
 function handleSelect(e) {
-      setInput({
-            ...input,
-            types: [...input.types, e.target.value] //el types es lo que necsita el post, cuando le mando el types
-            //traeme lo que ya habia-> ...input.types y concatenale el target.value, agrega en un arreglo todo lo 
-            //que selecciono
-        })
+    e.preventDefault();
+    const existingType = input.types.find(type => type === e.target.value)
+        if (existingType) return
+            if (input.types.length > 1) return
+            setInput({
+                  ...input,
+                  types: [...input.types, e.target.value]
+            })
+    //   setInput({
+    //         ...input,
+    //         types: [...input.types, e.target.value] //el types es lo que necsita el post, cuando le mando el types
+    //         //traeme lo que ya habia-> ...input.types y concatenale el target.value, agrega en un arreglo todo lo 
+    //         //que selecciono
+    //     })
       setErrors(Validate({
             ...input,
-            // types: [...input.types, e.target.value]
-            [e.target.name] : e.target.value
-        }))
+            types: [...input.types, e.target.value]
+            // [e.target.name]: e.target.value
+        }, pokemons))
 };
 
 useEffect(() => {
@@ -120,7 +134,7 @@ useEffect(() => {
         setErrors({
             ...errors,
             required: true,
-            types: 'Please choose at least one type'
+            types: 'You must select the pokemon types'
         })
     }
 }, [input.types, errors.required]);
@@ -137,6 +151,7 @@ function handleSubmit(e) {
         alert('You must complete all the required information')
     } else {
         e.preventDefault();
+        console.log(input.types)
         dispatch(postPokemon(input))    
             alert('¡Pokemon Created!')
             navigate('/home');
@@ -153,6 +168,10 @@ function handleSubmit(e) {
             })
     }
 };
+
+useEffect(() => {
+    dispatch(getTypes())
+}, [dispatch]);
 
 return (
     <div className='container-Created'>
@@ -220,17 +239,19 @@ return (
                 </div>
                 <div className='input-type'>
                     <label>Types:</label>
-                    <select name='types' onChange={(e) => handleSelect(e)}>
+                    <select  disabled={input.types.length > 1}  onChange={(e) => handleSelect(e)} >
+                        <option >TYPES:</option>
+                        {/* <option className='navbar_option'>ALL TYPES</option> */}
                         {
-                           types.map((t) => (
-                                <option value={t.name} key={t.id}>{t.name}</option>
-                            ))
+                           types && types.map((t) => (<option value={t.name} key={t.name}>{t.name.toUpperCase()}</option>))
                         }
+                        
                     </select>
+                    {!errors.types ? null : (<span className='error'>{errors.types}</span>)}
                     {
-                        input.types.map((t, i) => {
+                        input.types?.map((t) => {
                             return(
-                            <div className='list_types' key={i}>
+                            <div className='list_types' key={t}>
                                 <p className='type'>- {t}</p>
                                 <button className='btn-delete' value={t} onClick={() => handleDelete(t)}>X</button>
                             </div>
