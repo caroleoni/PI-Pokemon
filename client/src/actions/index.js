@@ -18,7 +18,7 @@ export const RESET = 'RESET';
 export function getPokemons() {
     return async function(dispatch) {
         console.log(dispatch)
-        let json = await axios.get('http://localhost:3001/pokemons');
+        let json = await axios.get('/pokemons');
         return dispatch({
             type: 'GET_POKEMONS',
             payload: json.data
@@ -27,7 +27,7 @@ export function getPokemons() {
 };
 export function getTypes() {
     return async function(dispatch) {
-        let json= await axios.get('http://localhost:3001/types');
+        let json= await axios.get('/types');
         console.log(json.data)
         return dispatch({
             type: 'GET_TYPES',
@@ -38,7 +38,7 @@ export function getTypes() {
 export function getNamePokemons(name) {
     return async function(dispatch) {
         try {
-            const json = await axios.get('http://localhost:3001/pokemons?name=' + name);
+            const json = await axios.get('/pokemons?name=' + name);
             console.log(json)
             return dispatch({
                 type: 'GET_NAME_POKEMONS',
@@ -55,7 +55,7 @@ export function getNamePokemons(name) {
 };
 export function postPokemon(payload) {
     return async function(dispatch) {
-        const response = await axios.post('http://localhost:3001/pokemons', payload);
+        const response = await axios.post('/pokemons', payload);
         console.log(response)
         return dispatch({
             type: 'POST_POKEMON',
@@ -66,7 +66,7 @@ export function postPokemon(payload) {
 export function getDetails(id) {
     return async function(dispatch) {
         try {
-            let json = await axios.get('http://localhost:3001/pokemons/' + id);
+            let json = await axios.get(`/pokemons/${id}`);
             return dispatch({
                 type: 'GET_DETAILS',
                 payload: json.data
@@ -102,7 +102,7 @@ export function orderAttack(payload) {
 };
 export function deletePokemon(id) {
     return async function(dispatch) {
-       await axios.delete('http://localhost:3001/pokemons/' + id)
+       await axios.delete(`/pokemons/${id}`);
         return dispatch({
             type: 'DELETE_POKEMON',
         
@@ -116,10 +116,10 @@ export function reset() {
 };
 export function orderBack(order) {
     return async function(dispatch) {
-      const json= await axios.get('http://localhost:3001/pokemons/ordenamiento' + order)
+       await axios.get('/pokemons/' + order)
         return dispatch({
             type: 'ORDER_BACK',
-            payload: json.data
+            // payload: json.data
         })
     }
 }

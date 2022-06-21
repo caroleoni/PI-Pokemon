@@ -37,7 +37,7 @@ function Validate(input) {
     if(!input.name) {
         errors.name ='Name is required';
         errors.required = true;
-    } else if(typeof input.name !== 'string' || input.name.length < 2) {
+    } else if(!/\S{1,15}[^0-9]/.test(input.name)) {
         errors.name = 'The name is invalid';
         errors.required = true;
     } else if(pokemons.find((p) => p.name.toLowerCase() === input.name.toLowerCase())) {
@@ -147,12 +147,13 @@ function handleDelete(e) {
 };
 function handleSubmit(e) {
     if(errors.required) {
-        e.preventDefault();
+        e.preventDefault(); //sin esto se nos actualiza la pagina y perdemos el estado
         alert('You must complete all the required information')
     } else {
         e.preventDefault();
         console.log(input.types)
-        dispatch(postPokemon(input))    
+        dispatch(postPokemon(input))
+        dispatch(getPokemons()) 
             alert('¡Pokemon Created!')
             navigate('/home');
             setInput({

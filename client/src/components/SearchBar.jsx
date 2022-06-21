@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNamePokemons } from '../actions/index';
 import '../styles/SearchBar.css';
 
 export default function SearchBar() {
     const dispatch = useDispatch();
+    const pokemons = useSelector((state) => state.pokemons)
     const [name, setName] = useState('');
 
 function handleInputName(e) {
@@ -16,12 +17,17 @@ function handleInputName(e) {
 };
 function handleSubmit(e) {
     e.preventDefault();
-    if(name.length > 0) {
-        dispatch(getNamePokemons(document.getElementById('search').value.toLowerCase()))
-        setName('');
+    const poke = pokemons.filter(p => p.name.toLowerCase().includes(name.toLowerCase()))
+    if(!poke.length) {
+        alert('Name not found')
+        setName('')
+        document.getElementById('search').value=''
+    } else if(name.length > 0) {
+        dispatch(getNamePokemons(name))
+        setName('')
         document.getElementById('search').value=''
     } else {
-        alert('Write a name')
+        alert('Write a Pokemon')
     }
     
 }

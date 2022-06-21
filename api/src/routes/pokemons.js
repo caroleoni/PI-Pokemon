@@ -67,12 +67,19 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const id  = req.params.id;
+    const {id }  = req.params;
     try {
+        // if(id.length > 10) {
+        //     let dbId = await Pokemon.findByPk(id)
+        //     res.json(dbId)
+        // } else {
+        //     let apiDb = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        //     res.json(apiDb.data)
+        // }
         let allPokemons = await getAllPokemons();
         if(id) {
             let idPokemon = allPokemons.filter(e => e.id == id)
-            idPokemon.length ? res.json(idPokemon) : res.status(404).json( 'Pokemon not found') 
+            idPokemon.length ? res.json(idPokemon) : res.status(404).json( 'Pokemon not found')
         }
     } catch (error) {
         console.log(error)
@@ -86,14 +93,12 @@ router.post('/', async (req, res) => {
         let newPokemon = await Pokemon.create({
             id, name, image, hp, attack, defense, speed, height, weight, createdInDb
         })
-        for(let i = 0; i < types.length; i ++) {
             let typesDb = await Type.findAll({
-                where: { name: types[0] }
-            })
-            await newPokemon.addType(typesDb);
-        }
+                where: { name: types }
+            });
         
-        
+        newPokemon.addType(typesDb);
+               
         res.json('Pokemon Created');
 
     } catch (error) {
@@ -113,29 +118,5 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.get('/ordenamiento/:order', async (req, res) => {
-    const {order}  = req.params;
-    const allPokemons = await getAllPokemons();
-    const orderName = order === 'A-Z' ?
-    allPokemons.sort(function(a, b)  {
-        if(a.name.toLowerCase() > b.name.toLowerCase()) {
-            return 1;
-        }
-        if(b.name.toLowerCase() > a.name.toLowerCase()) {
-            return -1;
-        }
-        return 0;
-    }) : 
-    allPokemons.sort(function(a, b) {
-        if(a.name.toLowerCase() > b.name.toLowerCase()) {
-            return -1;
-        }
-        if(b.name.toLowerCase() > a.name.toLowerCase()) {
-            return 1;
-        }
-        return 0;
-    })
-    res.status(200).json(orderName)
-} )
 
 module.exports = router;

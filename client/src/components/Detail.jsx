@@ -7,7 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/Detail.css';
 
 export default function Detail() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); //las va a ejecutar a las actions, reemplaza el connect
     const {id} = useParams();
     const navigate = useNavigate();
 
@@ -15,9 +15,9 @@ useEffect(() => {
     dispatch(reset())
 }, [dispatch]);
 
-useEffect(() => {
+useEffect(() => { //cuando se monta, actualiza el componente
     dispatch(getDetails(id))
-  }, [dispatch, id])
+  }, [dispatch, id]) //el array son las dependecias
 
 
 function handleDelete() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { orderBack, getPokemons, getTypes, filterCreated , filterByTypes, orderByName, orderAttack} from '../actions';
+import { getPokemons, getTypes, filterCreated , filterByTypes, orderByName, orderAttack} from '../actions';
 import { Link } from 'react-router-dom';
 import Card from "./Card";
 import Paginado from "./Paginado";
@@ -53,8 +53,7 @@ function handleFilterCreated(e) {
 }
 function handleOrderByName(e) {
     e.preventDefault();
-    // dispatch(orderByName(e.target.value))
-    dispatch(orderBack(e.target.value))
+    dispatch(orderByName(e.target.value))
     setCurrentPage(1);
     setOrder(`Ordenado ${e.target.value}`);
 }

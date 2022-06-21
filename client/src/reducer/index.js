@@ -70,7 +70,7 @@ function rootReducer(state = initialState, action) {
             const filterCreated = action.payload === 'create' ? allPokemons.filter(e => e.createdInDb) : allPokemons.filter(e => !e.createdInDb);
             return {
                 ...state,
-                pokemons: action.payload === 'All' ? allPokemons : filterCreated
+                pokemons: action.payload === 'all' ? allPokemons : filterCreated
             };
         case ORDER_BY_NAME: 
             const orderName = action.payload === 'A-Z' ?
@@ -132,13 +132,7 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 details: []
-            };    
-        case 'ORDER_BACK':
-            console.log(action.payload)
-            return {
-                ...state,
-                pokemons: action.payload
-            }    
+            };   
     
         default:
            return state;
