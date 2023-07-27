@@ -15,7 +15,7 @@ export default function Card({image, name, types, id}) {
 
     return (
         <div className='card-container'>
-            <img className='image' src={image} alt='image' width='170px' height='180px'/>
+            <img className='image' src={image} alt='Pokemon' width='170px' height='180px'/>
             <div className='card-detail'>
                 <h5 className='name-title'>Name</h5>
                 <h3>{name}</h3>

@@ -14,7 +14,7 @@ export default function CreatePokemon() {
     useEffect(() => {
         !types.length && dispatch(getTypes())
         !pokemons.length && dispatch(getPokemons())
-  }, [dispatch])
+  }, [pokemons.length, types.length,dispatch])
 
     const [input, setInput] = useState({ //en el setInput es donde guardo todo
         name: '',
@@ -137,7 +137,7 @@ useEffect(() => {
             types: 'You must select the pokemon types'
         })
     }
-}, [input.types, errors.required]);
+}, [input.types, errors, errors.required]);
 
 function handleDelete(e) {
     setInput({
