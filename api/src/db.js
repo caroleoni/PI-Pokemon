@@ -19,14 +19,14 @@ let sequelize =
         min: 1,
         idle: 10000,
       },
-      dialectOptions: {
-        ssl: {
-          require: true,       
-          rejectUnauthorized: false,
-        },
-        keepAlive: true,
-      },
-      ssl: true,
+      // dialectOptions: {
+      //   ssl: {
+      //     require: true,       
+      //     rejectUnauthorized: false,
+      //   },
+      //   keepAlive: true,
+      // },
+      // ssl: true,
     })
 : new Sequelize({
       database: DB_NAME,
@@ -40,14 +40,14 @@ let sequelize =
         min: 1,
         idle: 10000,
       },
-      dialectOptions: {
-        ssl: {
-          require: true,      
-          rejectUnauthorized: false,
-        },
-        keepAlive: true,
-      },
-      ssl: true,
+      // dialectOptions: {
+      //   ssl: {
+      //     require: true,      
+      //     rejectUnauthorized: false,
+      //   },
+      //   keepAlive: true,
+      // },
+      // ssl: true,
     });
 
 // const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
